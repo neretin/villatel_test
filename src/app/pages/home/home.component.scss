@@ -3,3 +3,9 @@
     padding-box;
   height: calc(100vh - 80px);
 }
+
+@media only screen and (min-width: 700px) {
+  .home-container {
+    background: transparent url("/assets/images/bg-full.jpg");
+  }
+}

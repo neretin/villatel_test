@@ -1,6 +1,44 @@
 :host {
-  height: 280px;
-  border-radius: 48px 48px 0px 0px;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
   opacity: 1;
+  display: flex;
+  border-top: 1px solid white;
+  backdrop-filter: blur(20px) brightness(1.17);
+  padding-top: 10px;
+}
+
+form {
+  border-radius: var(--border-radius);
+  height: 100%;
+  width: 100%;
+  background: transparent url("/assets/svg/Rectangle 174.svg") 0% 0% no-repeat
+    padding-box;
   backdrop-filter: blur(41px);
+}
+
+.dropdown-menu {
+  li {
+    padding: 15px 10px;
+    a {
+      color: var(--main-color);
+    }
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  :host {
+    padding: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    align-self: center;
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    border: 1px solid white;
+  }
+
+  form {
+    background: white;
+    border-radius: 31px;
+  }
 }

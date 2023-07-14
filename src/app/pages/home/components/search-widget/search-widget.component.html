@@ -1,26 +1,62 @@
-<div>
-  <div class="d-flex justify-content-center">
-    <typography look="title">Stay With Us</typography>
+<form
+  class="d-flex flex-column flex-lg-row px-4 py-3 align-items-center justify-content-lg-between"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="btn-group col-12 col-lg-4" dropdown>
+    <button
+      id="button-basic"
+      dropdownToggle
+      type="button"
+      class="btn dropdown-toggle"
+      aria-controls="dropdown-basic"
+    >
+      {{ form.value.destination?.label || "Select a Destination" }}
+      <span class="caret"></span>
+    </button>
+
+    <ul
+      *dropdownMenu
+      class="dropdown-menu"
+      role="menu"
+      aria-labelledby="button-basic"
+    >
+      <li role="menuitem" *ngFor="let item of destinations$ | async">
+        <a
+          class="dropdown-item"
+          href
+          (click)="setDestination(item); $event.preventDefault()"
+          >{{ item.label }}</a
+        >
+      </li>
+    </ul>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <button type="submit">Search</button>
-  </form>
+  <div class="form-group my-3 col-12 col-lg-4" #datepickerContainer>
+    <button type="button" class="btn" (click)="toggleDatepicker()">
+      {{ (form.value.startDate | date) || "Check In" }}
+      <img class="mx-3" src="/assets/svg/arrow.svg" />
+      {{ (form.value.endDate | date) || "Check Out" }}
+    </button>
 
-  <!-- <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-    Button dropdown <span class="caret"></span>
+    <input
+      #datepickerRef="mwlFlatpickr"
+      class="custom-daterange d-none"
+      type="text"
+      mwlFlatpickr
+      (flatpickrChange)="dateChange($event)"
+      [altInput]="true"
+      [convertModelValue]="true"
+      [mode]="'range'"
+    />
+  </div>
+  <div class="modal"></div>
+
+  <button
+    [disabled]="form.pristine || form.invalid"
+    class="btn btn-primary align-self-center col-12 col-lg-4"
+    type="submit"
+  >
+    Search
   </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu">
-    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-    <li role="menuitem">
-      <a class="dropdown-item" href="#">Another action</a>
-    </li>
-    <li role="menuitem">
-      <a class="dropdown-item" href="#">Something else here</a>
-    </li>
-    <li class="divider dropdown-divider"></li>
-    <li role="menuitem">
-      <a class="dropdown-item" href="#">Separated link</a>
-    </li>
-  </ul> -->
-</div>
+</form>

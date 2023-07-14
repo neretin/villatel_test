@@ -9,12 +9,25 @@
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
 
+:root {
+  --main-color: #112f58;
+  --border-radius: 34px;
+}
+
 @font-face {
-  font-family: "BuenosAiresWeb-Regular";
+  font-family: "BuenosAiresWeb";
   src: url("/assets/BuenosAiresWebTrial-Regular.woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "BuenosAiresWeb";
+  src: url("/assets/BuenosAiresWebTrial-Light.woff");
+  font-weight: 300;
 }
 
 body {
-  font-family: BuenosAiresWeb-Regular, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
+  font-family: BuenosAiresWeb, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
+@import "./styles/flatpickr.scss";
+@import "./styles/bootstrap.scss";

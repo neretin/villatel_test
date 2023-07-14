@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, from, of } from 'rxjs';
 
 export type Destination = {
-  id: number;
-  label: string;
+  id?: number;
+  label?: string;
 };
 
 @Injectable({
